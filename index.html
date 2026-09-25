@@ -1,0 +1,1393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="ChronosTrack">
+<meta name="application-name" content="ChronosTrack">
+<link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAIAAACyr5FlAAAERklEQVR4nO3dQXLbQBQDUV/B9z+ss2CVQiWGJJJDAhj2u4D+QO2t/PUNCF/uA5CLOCARByTigEQckIgDEnFAIg5IxAGJOCARByTigEQckIgDEnFAIg5IxAGJOCARByTigEQckIgDEnFAIg5IxAGJOCARByTigHTrOH4+4L7R6UZxfJICuaxNHseoIO4ZyoRxnB3EfUKZKg5XFmvuDUaaIQ53D79zrzJAdxzuAN5zL3RIaxzuL30b91o79cXh/qL3cy+3WVkc7u/3KPd+29TE4fqqXJ+boCOOqK8k6phTpceR/DUk3zZEdBwtu7fcuVVuHI1bN978Qmgc1RNXH7+WGMccy07wirg4Jtj0of0tWXFUT6n0Pioojt4R3yp9WkocjdttVffGiDjqVtut66X+OLr2Oq7oveY4ipYaqOXVzjhaNjpDxdsL4jBeeKr859viyJkm8KND+vDEETVK5qcn9JEbh/0Y+wF3jCNti+QbvH1cHUfgCuFnGE8iDuKQLo0j8P05cQTukxXHlce8vSrqmMnjSPuzeHtY1DGWw4LiuOySDw9Lu2faOHIe/PltgSddfBtxEIcUEcc1N2y9LfOq2eII+TvYel7mVVee54/jggP2nee+y7/b6XEk/AXsu9B9l3864iAOyRzH2Z/+icbbiOMijbfNEMfrt4V/Ae67vu0DOuM49aM/V3oecVyh9DziuELped1xVJSRH4dxSeIgDok4iEMiDuKQiIM4JOIgDumsOFrKqIjDtSdxEIdEHGf9D5crjxz7WQ/EQRwScRCHRBzEIRHHE+JYI44nxLFGHE+IY404nhDHGnF0IA5IU8VBHwO5liSOAsQBiTggEQck4oA0YRz0MYRxQ+JIRxyQbhoHfbzlHZAfb4nmXY84ot06Dvp4wT4dceSyT8eP1Oay7+aPgz5+lTAaP4wfKmGxiDjo4x8hcxFHopC5+DdecXKGCoqDPtJW4l+HZomaKCuOm/eRtg//rjxF4DLEkSJwmavjyFzBLnMTQxyxW7jErpEbx036SJ7CE0f4KJcJH8EWR/40Z8t/fkEcU/ZR8XZnHC0bDdfyanMcRUuNUvRefxxdex3U9dKIOOpW26fujSlxbP0lP/ex25Q+LSiO3hFf631UVhw7fgnUfe8r7W+Ji2OCTRcTvCIxjn2/JOw++a/q49dC49j9S9PcPFBuHAd/iZw7j4uOY8gv1d/ztiHS41gc/xoGfhNRx5yqI46T/tlW8ucmqIljccZXdSX3ftuUxVHdh3u5zfriWLi/6G3ca+3UGsfC/aW/517okO44Fu4AfudeZYAZ4nhw9/AzRxMPU8WxIItRJoxjjSCOmDyONYLY6kZx/I8UXrt1HHiNOCARByTigEQckIgDEnFAIg5IxAGJOCARByTigEQckIgDEnFAIg5IxAGJOCARByTigEQckIgDEnFAIg5IxAGJOCARByTigEQckP4ABLcnlSlIyX4AAAAASUVORK5CYII=">
+<link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAIAAACyr5FlAAAERklEQVR4nO3dQXLbQBQDUV/B9z+ss2CVQiWGJJJDAhj2u4D+QO2t/PUNCF/uA5CLOCARByTigEQckIgDEnFAIg5IxAGJOCARByTigEQckIgDEnFAIg5IxAGJOCARByTigEQckIgDEnFAIg5IxAGJOCARByTigHTrOH4+4L7R6UZxfJICuaxNHseoIO4ZyoRxnB3EfUKZKg5XFmvuDUaaIQ53D79zrzJAdxzuAN5zL3RIaxzuL30b91o79cXh/qL3cy+3WVkc7u/3KPd+29TE4fqqXJ+boCOOqK8k6phTpceR/DUk3zZEdBwtu7fcuVVuHI1bN978Qmgc1RNXH7+WGMccy07wirg4Jtj0of0tWXFUT6n0Pioojt4R3yp9WkocjdttVffGiDjqVtut66X+OLr2Oq7oveY4ipYaqOXVzjhaNjpDxdsL4jBeeKr859viyJkm8KND+vDEETVK5qcn9JEbh/0Y+wF3jCNti+QbvH1cHUfgCuFnGE8iDuKQLo0j8P05cQTukxXHlce8vSrqmMnjSPuzeHtY1DGWw4LiuOySDw9Lu2faOHIe/PltgSddfBtxEIcUEcc1N2y9LfOq2eII+TvYel7mVVee54/jggP2nee+y7/b6XEk/AXsu9B9l3864iAOyRzH2Z/+icbbiOMijbfNEMfrt4V/Ae67vu0DOuM49aM/V3oecVyh9DziuELped1xVJSRH4dxSeIgDok4iEMiDuKQiIM4JOIgDumsOFrKqIjDtSdxEIdEHGf9D5crjxz7WQ/EQRwScRCHRBzEIRHHE+JYI44nxLFGHE+IY404nhDHGnF0IA5IU8VBHwO5liSOAsQBiTggEQck4oA0YRz0MYRxQ+JIRxyQbhoHfbzlHZAfb4nmXY84ot06Dvp4wT4dceSyT8eP1Oay7+aPgz5+lTAaP4wfKmGxiDjo4x8hcxFHopC5+DdecXKGCoqDPtJW4l+HZomaKCuOm/eRtg//rjxF4DLEkSJwmavjyFzBLnMTQxyxW7jErpEbx036SJ7CE0f4KJcJH8EWR/40Z8t/fkEcU/ZR8XZnHC0bDdfyanMcRUuNUvRefxxdex3U9dKIOOpW26fujSlxbP0lP/ex25Q+LSiO3hFf631UVhw7fgnUfe8r7W+Ji2OCTRcTvCIxjn2/JOw++a/q49dC49j9S9PcPFBuHAd/iZw7j4uOY8gv1d/ztiHS41gc/xoGfhNRx5yqI46T/tlW8ucmqIljccZXdSX3ftuUxVHdh3u5zfriWLi/6G3ca+3UGsfC/aW/517okO44Fu4AfudeZYAZ4nhw9/AzRxMPU8WxIItRJoxjjSCOmDyONYLY6kZx/I8UXrt1HHiNOCARByTigEQckIgDEnFAIg5IxAGJOCARByTigEQckIgDEnFAIg5IxAGJOCARByTigEQckIgDEnFAIg5IxAGJOCARByTigEQckP4ABLcnlSlIyX4AAAAASUVORK5CYII=">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ChronosTrack</title>
+<meta name="theme-color" content="#fafafa">
+<style>
+:root{--bg:#fafafa;--fg:#171717;--card:#fff;--bd:#e5e5e5;--mu:#a3a3a3;--mu2:#737373}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;padding:0}
+body{background:var(--bg);color:var(--fg);font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif;line-height:1.45;-webkit-font-smoothing:antialiased;font-size:16px}
+svg{display:block}
+.ic{width:1rem;height:1rem;flex:none}
+.ic-lg{width:1.75rem;height:1.75rem;flex:none}
+.wrap{max-width:28rem;margin:0 auto;padding:0 1.5rem 7.5rem}
+.top{padding:2.5rem 0 1rem}
+.eyebrow{display:flex;align-items:center;gap:.4rem;color:var(--mu);font-size:.8125rem;font-weight:500}
+h1{font-size:1.5rem;line-height:1.2;font-weight:600;letter-spacing:-.02em;margin:.25rem 0 0}
+.sub{color:var(--mu);font-size:.8125rem;margin:.25rem 0 0}
+.hint{color:var(--mu);font-size:.75rem;margin:.35rem 0 0;font-weight:400}
+.mt3{margin-top:.75rem}.mt6{margin-top:1.5rem}.mt8{margin-top:2rem}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:1rem;padding:1rem}
+.stack>*+*{margin-top:1rem}
+.ctitle{font-size:.875rem;font-weight:600}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:.75rem}
+.stat .k{font-size:.6875rem;letter-spacing:.06em;text-transform:uppercase;color:var(--mu);font-weight:500}
+.stat .v{font-size:1.5rem;font-weight:600;margin-top:.25rem;font-variant-numeric:tabular-nums}
+.stat .n{font-size:.75rem;color:var(--mu);margin-top:.25rem;font-variant-numeric:tabular-nums}
+.big{width:100%;border:1px solid var(--bd);background:var(--card);color:var(--fg);border-radius:1.5rem;padding:2rem 1.5rem;display:flex;flex-direction:column;align-items:center;font:inherit;cursor:pointer;transition:transform .15s ease,background .2s,color .2s,border-color .2s;box-shadow:0 1px 2px rgba(0,0,0,.03)}
+.big:active{transform:scale(.98)}
+.big.on{background:var(--fg);border-color:var(--fg);color:#fff}
+.ring{width:4rem;height:4rem;border-radius:999px;display:flex;align-items:center;justify-content:center;background:#f5f5f5;margin-bottom:.75rem}
+.big.on .ring{background:rgba(255,255,255,.15)}
+.lbl{font-size:1.125rem;font-weight:600;letter-spacing:-.02em}
+.live{font-size:.875rem;opacity:.7;font-variant-numeric:tabular-nums;margin-top:.25rem}
+.btn{border-radius:.75rem;border:1px solid transparent;font:inherit;font-size:.875rem;font-weight:600;padding:.85rem 1rem;display:flex;align-items:center;justify-content:center;gap:.5rem;cursor:pointer;transition:background .2s,border-color .2s,transform .15s}
+.btn:active{transform:scale(.99)}
+.btn.wide{width:100%}
+.btn.dark{background:var(--fg);color:#fff}
+.btn.ghost{background:var(--card);border-color:var(--bd);color:#404040;font-weight:500}
+.btn.ghost:hover{border-color:#d4d4d4}
+.btn.danger{color:#dc2626}
+.sec{display:flex;align-items:center;gap:.5rem;color:var(--mu2);font-size:.875rem;font-weight:500;margin-bottom:.75rem}
+.empty{color:var(--mu);font-size:.875rem;text-align:center;padding:2.5rem 0;margin:0}
+.list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:.5rem}
+.row{background:var(--card);border:1px solid var(--bd);border-radius:1rem;padding:1rem;display:flex;align-items:center;justify-content:space-between}
+.row.on{background:var(--fg);border-color:var(--fg);color:#fff}
+.rleft{display:flex;align-items:center;gap:.75rem;min-width:0}
+.t{font-size:.875rem;font-weight:500;font-variant-numeric:tabular-nums}
+.d{font-size:.75rem;color:var(--mu);font-variant-numeric:tabular-nums}
+.row.on .d{color:rgba(255,255,255,.6)}
+.dot{width:.5rem;height:.5rem;border-radius:999px;background:#d4d4d4;flex:none}
+.dot.ok{background:#34d399}.dot.warn{background:#fbbf24}
+.pulse{animation:pulse 1.6s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+.tag{font-size:.625rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#d97706;margin-right:.4rem}
+.row.on .tag{color:#fcd34d}
+.racts{display:flex;align-items:center;gap:.25rem}
+.x{background:none;border:0;padding:.5rem;color:#a3a3a3;cursor:pointer;display:flex;border-radius:.5rem;text-decoration:none}
+.x:hover{color:#525252}
+.row.on .x{color:rgba(255,255,255,.7)}
+.foot{display:flex;align-items:center;justify-content:center;gap:.35rem;color:var(--mu);font-size:.75rem;padding:1.5rem 0;margin:0}
+.grp+.grp{margin-top:1.5rem}
+.ghead{display:flex;align-items:center;justify-content:space-between;padding:0 .25rem;margin-bottom:.5rem}
+.ghead span:first-child{font-size:.875rem;font-weight:600}
+.gtot{font-size:.875rem;font-weight:500;color:var(--mu2);font-variant-numeric:tabular-nums}
+.gmuted{color:var(--mu)}
+.fld{display:block}
+.fld>span{display:block;font-size:.875rem;font-weight:500;margin-bottom:.4rem}
+.fld .lbl-ic{display:flex;align-items:center;gap:.35rem;color:var(--mu)}
+input[type=text],input[type=number],input[type=datetime-local],select{width:100%;border:1px solid var(--bd);background:var(--card);border-radius:.75rem;padding:.8rem 1rem;font:inherit;font-size:.875rem;color:inherit;outline:none;transition:border-color .2s}
+input:focus,select:focus{border-color:var(--fg)}
+input[type=number],input[type=datetime-local]{font-variant-numeric:tabular-nums}
+select{appearance:none;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23a3a3a3' stroke-width='2' stroke-linecap='round'><path d='M6 9l6 6 6-6'/></svg>");background-repeat:no-repeat;background-position:right 1rem center;padding-right:2.5rem}
+[dir=rtl] select{background-position:left 1rem center;padding-right:1rem;padding-left:2.5rem}
+.rowline{display:flex;align-items:center;justify-content:space-between;margin-top:1rem}
+.rowline span{font-size:.875rem;color:var(--mu2)}
+.rowline b{font-size:1.125rem;font-weight:600;font-variant-numeric:tabular-nums}
+.err{background:#fef2f2;border:1px solid #fee2e2;color:#dc2626;font-size:.875rem;border-radius:.75rem;padding:.75rem 1rem;margin-top:1rem}
+.err[hidden]{display:none}
+.warn{background:#fffbeb;border:1px solid #fef3c7;color:#b45309;font-size:.75rem;border-radius:.75rem;padding:.75rem;margin:0}
+.hidein{display:none}
+.back{display:inline-flex;padding:.5rem;margin:0 0 .25rem -.5rem;border-radius:999px;color:var(--mu2)}
+.back:hover{color:var(--fg)}
+.nav{position:fixed;left:0;right:0;bottom:0;background:rgba(255,255,255,.95);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border-top:1px solid var(--bd);z-index:20}
+.nav .in{max-width:28rem;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr)}
+.nav a{display:flex;flex-direction:column;align-items:center;gap:.25rem;padding:.75rem 0;font-size:.6875rem;font-weight:500;color:var(--mu);text-decoration:none}
+.nav a.on{color:var(--fg)}
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:5.5rem;background:#171717;color:#fff;font-size:.8125rem;padding:.7rem 1.1rem;border-radius:999px;z-index:50;max-width:22rem;text-align:center;box-shadow:0 8px 24px rgba(0,0,0,.18);display:flex}
+.toast[hidden]{display:none}
+.bars{display:flex;align-items:flex-end;gap:.375rem;height:3rem;margin-top:.75rem}
+.bars .col{flex:1;display:flex;flex-direction:column;justify-content:flex-end;height:100%}
+.bars .bar{width:100%;background:rgba(23,23,23,.85);border-radius:2px}
+.days{display:flex;gap:.375rem;margin-top:.25rem}
+.days span{flex:1;text-align:center;font-size:.625rem;color:#d4d4d4}
+.wmeta{display:flex;align-items:center;justify-content:space-between;font-size:.75rem;color:var(--mu);margin-top:.75rem}
+.wtop{display:flex;align-items:baseline;justify-content:space-between}
+.wtop .wd{font-size:.875rem;font-weight:600}
+.wtop .wt{font-size:1.125rem;font-weight:600;font-variant-numeric:tabular-nums}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<div id="toast" class="toast" hidden></div>
+<script>
+"use strict";
+/* ChronosTrack — offline single-file app.
+   No server and no account: your sessions are saved in this browser only. */
+(function () {
+  var STORE_KEY = "chronostrack.v1";
+  var DAY_MS = 86400000;
+
+  var TRANSLATIONS = {
+    en: {
+      "common.loading": "Loading…",
+      "common.break": "Break",
+      "nav.today": "Today",
+      "nav.history": "History",
+      "nav.report": "Report",
+      "nav.profile": "Settings",
+      "home.subtitle": "Hours",
+      "home.checkIn": "Check In",
+      "home.checkOut": "Check Out",
+      "home.backToWork": "Back to work",
+      "home.lunchPrefix": "Lunch break · ",
+      "home.startBreak": "Start lunch break",
+      "home.today": "Today",
+      "home.thisWeek": "This week",
+      "home.breakSuffix": "+ {duration} break",
+      "home.sessionsTitle": "Today's sessions",
+      "home.empty": "No sessions yet today. Press Check In to start.",
+      "home.sessionCountOne": "{count} session today",
+      "home.sessionCountMany": "{count} sessions today",
+      "history.title": "History",
+      "history.subtitle": "All your recorded work sessions",
+      "history.empty": "No sessions recorded yet.",
+      "history.inProgress": "In progress",
+      "history.edit": "Edit session",
+      "history.delete": "Delete session",
+      "history.dayBreak": "+ {duration} break",
+      "report.title": "Weekly report",
+      "report.subtitle": "Hours grouped by week",
+      "report.average": "Weekly average",
+      "report.weeksTracked": "Weeks tracked",
+      "report.empty": "No sessions recorded yet.",
+      "report.sessionsOne": "{count} session",
+      "report.sessionsMany": "{count} sessions",
+      "report.daysOne": "{count} day",
+      "report.daysMany": "{count} days",
+      "report.perDay": "~{hours}h/day",
+      "day.mon": "M",
+      "day.tue": "T",
+      "day.wed": "W",
+      "day.thu": "T",
+      "day.fri": "F",
+      "day.sat": "S",
+      "day.sun": "S",
+      "profile.title": "Settings",
+      "profile.subtitle": "Language and your data",
+      "profile.language": "Language",
+      "profile.saved": "Saved",
+      "profile.save": "Save changes",
+      "data.title": "Your data",
+      "data.help": "Download a backup file, or load one from another device.",
+      "data.export": "Export data",
+      "data.import": "Import data",
+      "data.exported": "Backup downloaded.",
+      "data.exportError": "Could not create the backup file.",
+      "data.imported": "Imported {count} sessions.",
+      "data.importNone": "Nothing new to import.",
+      "data.importError": "That file could not be read.",
+      "offline.title": "Offline app",
+      "offline.help": "Download a single file that runs on your own device — no internet, no account.",
+      "offline.download": "Download offline app",
+      "settings.local": "Your sessions are saved on this device only.",
+      "settings.storageWarning": "This browser is blocking local storage, so your sessions will not be saved. Use Export to keep a backup.",
+      "edit.title": "Edit session",
+      "edit.subtitle": "Adjust the times of a recorded session",
+      "edit.back": "Back to history",
+      "edit.checkIn": "Check in",
+      "edit.checkOut": "Check out",
+      "edit.openHelp": "Leave empty to keep this session open (still checked in).",
+      "edit.duration": "Duration",
+      "edit.noStart": "Please set a start time.",
+      "edit.endBeforeStart": "End time must be after the start time.",
+      "edit.noSession": "No session selected.",
+      "edit.delete": "Delete session"
+    },
+    it: {
+      "common.loading": "Caricamento…",
+      "common.break": "Pausa",
+      "nav.today": "Oggi",
+      "nav.history": "Cronologia",
+      "nav.report": "Report",
+      "nav.profile": "Impostazioni",
+      "home.subtitle": "Ore",
+      "home.checkIn": "Inizia lavoro",
+      "home.checkOut": "Termina lavoro",
+      "home.backToWork": "Riprendi lavoro",
+      "home.lunchPrefix": "Pausa pranzo · ",
+      "home.startBreak": "Inizia pausa pranzo",
+      "home.today": "Oggi",
+      "home.thisWeek": "Questa settimana",
+      "home.breakSuffix": "+ {duration} di pausa",
+      "home.sessionsTitle": "Sessioni di oggi",
+      "home.empty": "Nessuna sessione oggi. Premi Inizia lavoro per cominciare.",
+      "home.sessionCountOne": "{count} sessione oggi",
+      "home.sessionCountMany": "{count} sessioni oggi",
+      "history.title": "Cronologia",
+      "history.subtitle": "Tutte le sessioni registrate",
+      "history.empty": "Nessuna sessione registrata.",
+      "history.inProgress": "In corso",
+      "history.edit": "Modifica sessione",
+      "history.delete": "Elimina sessione",
+      "history.dayBreak": "+ {duration} di pausa",
+      "report.title": "Report settimanale",
+      "report.subtitle": "Ore raggruppate per settimana",
+      "report.average": "Media settimanale",
+      "report.weeksTracked": "Settimane registrate",
+      "report.empty": "Nessuna sessione registrata.",
+      "report.sessionsOne": "{count} sessione",
+      "report.sessionsMany": "{count} sessioni",
+      "report.daysOne": "{count} giorno",
+      "report.daysMany": "{count} giorni",
+      "report.perDay": "~{hours}h/giorno",
+      "day.mon": "L",
+      "day.tue": "M",
+      "day.wed": "M",
+      "day.thu": "G",
+      "day.fri": "V",
+      "day.sat": "S",
+      "day.sun": "D",
+      "profile.title": "Impostazioni",
+      "profile.subtitle": "Lingua e i tuoi dati",
+      "profile.language": "Lingua",
+      "profile.saved": "Salvato",
+      "profile.save": "Salva modifiche",
+      "data.title": "I tuoi dati",
+      "data.help": "Scarica un file di backup o caricane uno da un altro dispositivo.",
+      "data.export": "Esporta dati",
+      "data.import": "Importa dati",
+      "data.exported": "Backup scaricato.",
+      "data.exportError": "Impossibile creare il file di backup.",
+      "data.imported": "Importate {count} sessioni.",
+      "data.importNone": "Nessuna nuova sessione da importare.",
+      "data.importError": "Impossibile leggere il file.",
+      "offline.title": "App offline",
+      "offline.help": "Scarica un singolo file che funziona sul tuo dispositivo — senza internet e senza account.",
+      "offline.download": "Scarica app offline",
+      "settings.local": "Le tue sessioni sono salvate solo su questo dispositivo.",
+      "settings.storageWarning": "Questo browser blocca la memoria locale, quindi le sessioni non verranno salvate. Usa Esporta per tenere un backup.",
+      "edit.title": "Modifica sessione",
+      "edit.subtitle": "Modifica gli orari di una sessione registrata",
+      "edit.back": "Torna alla cronologia",
+      "edit.checkIn": "Entrata",
+      "edit.checkOut": "Uscita",
+      "edit.openHelp": "Lascia vuoto per mantenere la sessione aperta (ancora in corso).",
+      "edit.duration": "Durata",
+      "edit.noStart": "Imposta un orario di inizio.",
+      "edit.endBeforeStart": "L'orario di fine deve essere successivo a quello di inizio.",
+      "edit.noSession": "Nessuna sessione selezionata.",
+      "edit.delete": "Elimina sessione"
+    },
+    es: {
+      "common.break": "Descanso",
+      "nav.today": "Hoy",
+      "nav.history": "Historial",
+      "nav.report": "Informe",
+      "nav.profile": "Ajustes",
+      "home.subtitle": "Horas",
+      "home.checkIn": "Fichar entrada",
+      "home.checkOut": "Fichar salida",
+      "home.backToWork": "Volver al trabajo",
+      "home.lunchPrefix": "Pausa comida · ",
+      "home.startBreak": "Iniciar pausa comida",
+      "home.today": "Hoy",
+      "home.thisWeek": "Esta semana",
+      "home.breakSuffix": "+ {duration} de descanso",
+      "home.sessionsTitle": "Sesiones de hoy",
+      "home.empty": "Aún no hay sesiones hoy. Pulsa Fichar entrada para empezar.",
+      "home.sessionCountOne": "{count} sesión hoy",
+      "home.sessionCountMany": "{count} sesiones hoy",
+      "history.title": "Historial",
+      "history.subtitle": "Todas tus sesiones registradas",
+      "history.empty": "Aún no hay sesiones registradas.",
+      "history.inProgress": "En curso",
+      "history.edit": "Editar sesión",
+      "history.delete": "Eliminar sesión",
+      "history.dayBreak": "+ {duration} de descanso",
+      "report.title": "Informe semanal",
+      "report.subtitle": "Horas agrupadas por semana",
+      "report.average": "Media semanal",
+      "report.weeksTracked": "Semanas registradas",
+      "report.empty": "Aún no hay sesiones registradas.",
+      "report.sessionsOne": "{count} sesión",
+      "report.sessionsMany": "{count} sesiones",
+      "report.daysOne": "{count} día",
+      "report.daysMany": "{count} días",
+      "report.perDay": "~{hours} h/día",
+      "day.mon": "L",
+      "day.tue": "M",
+      "day.wed": "X",
+      "day.thu": "J",
+      "day.fri": "V",
+      "day.sat": "S",
+      "day.sun": "D",
+      "profile.title": "Ajustes",
+      "profile.subtitle": "Idioma y tus datos",
+      "profile.language": "Idioma",
+      "profile.saved": "Guardado",
+      "profile.save": "Guardar cambios",
+      "edit.title": "Editar sesión",
+      "edit.subtitle": "Ajusta los horarios de una sesión registrada",
+      "edit.back": "Volver al historial",
+      "edit.checkIn": "Entrada",
+      "edit.checkOut": "Salida",
+      "edit.openHelp": "Déjalo vacío para mantener la sesión abierta (aún fichado).",
+      "edit.duration": "Duración",
+      "edit.noStart": "Indica una hora de inicio.",
+      "edit.endBeforeStart": "La hora de fin debe ser posterior a la de inicio.",
+      "edit.noSession": "No se ha seleccionado ninguna sesión.",
+      "edit.delete": "Eliminar sesión"
+    },
+    fr: {
+      "common.break": "Pause",
+      "nav.today": "Aujourd'hui",
+      "nav.history": "Historique",
+      "nav.report": "Rapport",
+      "nav.profile": "Réglages",
+      "home.subtitle": "Heures",
+      "home.checkIn": "Pointer l'arrivée",
+      "home.checkOut": "Pointer la sortie",
+      "home.backToWork": "Reprendre le travail",
+      "home.lunchPrefix": "Pause déjeuner · ",
+      "home.startBreak": "Commencer la pause déjeuner",
+      "home.today": "Aujourd'hui",
+      "home.thisWeek": "Cette semaine",
+      "home.breakSuffix": "+ {duration} de pause",
+      "home.sessionsTitle": "Sessions du jour",
+      "home.empty": "Aucune session aujourd'hui. Appuyez sur Pointer l'arrivée pour commencer.",
+      "home.sessionCountOne": "{count} session aujourd'hui",
+      "home.sessionCountMany": "{count} sessions aujourd'hui",
+      "history.title": "Historique",
+      "history.subtitle": "Toutes vos sessions enregistrées",
+      "history.empty": "Aucune session enregistrée.",
+      "history.inProgress": "En cours",
+      "history.edit": "Modifier la session",
+      "history.delete": "Supprimer la session",
+      "history.dayBreak": "+ {duration} de pause",
+      "report.title": "Rapport hebdomadaire",
+      "report.subtitle": "Heures regroupées par semaine",
+      "report.average": "Moyenne hebdomadaire",
+      "report.weeksTracked": "Semaines suivies",
+      "report.empty": "Aucune session enregistrée.",
+      "report.sessionsOne": "{count} session",
+      "report.sessionsMany": "{count} sessions",
+      "report.daysOne": "{count} jour",
+      "report.daysMany": "{count} jours",
+      "report.perDay": "~{hours} h/jour",
+      "day.mon": "L",
+      "day.tue": "M",
+      "day.wed": "M",
+      "day.thu": "J",
+      "day.fri": "V",
+      "day.sat": "S",
+      "day.sun": "D",
+      "profile.title": "Réglages",
+      "profile.subtitle": "Langue et vos données",
+      "profile.language": "Langue",
+      "profile.saved": "Enregistré",
+      "profile.save": "Enregistrer",
+      "edit.title": "Modifier la session",
+      "edit.subtitle": "Ajustez les horaires d'une session enregistrée",
+      "edit.back": "Retour à l'historique",
+      "edit.checkIn": "Arrivée",
+      "edit.checkOut": "Sortie",
+      "edit.openHelp": "Laissez vide pour garder la session ouverte (toujours pointé).",
+      "edit.duration": "Durée",
+      "edit.noStart": "Veuillez indiquer une heure de début.",
+      "edit.endBeforeStart": "L'heure de fin doit être postérieure à l'heure de début.",
+      "edit.noSession": "Aucune session sélectionnée.",
+      "edit.delete": "Supprimer la session"
+    },
+    de: {
+      "common.break": "Pause",
+      "nav.today": "Heute",
+      "nav.history": "Verlauf",
+      "nav.report": "Bericht",
+      "nav.profile": "Einstellungen",
+      "home.subtitle": "Stunden",
+      "home.checkIn": "Einstempeln",
+      "home.checkOut": "Ausstempeln",
+      "home.backToWork": "Weiterarbeiten",
+      "home.lunchPrefix": "Mittagspause · ",
+      "home.startBreak": "Mittagspause starten",
+      "home.today": "Heute",
+      "home.thisWeek": "Diese Woche",
+      "home.breakSuffix": "+ {duration} Pause",
+      "home.sessionsTitle": "Heutige Sitzungen",
+      "home.empty": "Heute noch keine Sitzungen. Tippe auf Einstempeln, um zu starten.",
+      "home.sessionCountOne": "{count} Sitzung heute",
+      "home.sessionCountMany": "{count} Sitzungen heute",
+      "history.title": "Verlauf",
+      "history.subtitle": "Alle erfassten Arbeitssitzungen",
+      "history.empty": "Noch keine Sitzungen erfasst.",
+      "history.inProgress": "Läuft",
+      "history.edit": "Sitzung bearbeiten",
+      "history.delete": "Sitzung löschen",
+      "history.dayBreak": "+ {duration} Pause",
+      "report.title": "Wochenbericht",
+      "report.subtitle": "Stunden nach Woche gruppiert",
+      "report.average": "Wochendurchschnitt",
+      "report.weeksTracked": "Erfasste Wochen",
+      "report.empty": "Noch keine Sitzungen erfasst.",
+      "report.sessionsOne": "{count} Sitzung",
+      "report.sessionsMany": "{count} Sitzungen",
+      "report.daysOne": "{count} Tag",
+      "report.daysMany": "{count} Tage",
+      "report.perDay": "~{hours} Std./Tag",
+      "day.mon": "M",
+      "day.tue": "D",
+      "day.wed": "M",
+      "day.thu": "D",
+      "day.fri": "F",
+      "day.sat": "S",
+      "day.sun": "S",
+      "profile.title": "Einstellungen",
+      "profile.subtitle": "Sprache und deine Daten",
+      "profile.language": "Sprache",
+      "profile.saved": "Gespeichert",
+      "profile.save": "Änderungen speichern",
+      "edit.title": "Sitzung bearbeiten",
+      "edit.subtitle": "Passe die Zeiten einer erfassten Sitzung an",
+      "edit.back": "Zurück zum Verlauf",
+      "edit.checkIn": "Beginn",
+      "edit.checkOut": "Ende",
+      "edit.openHelp": "Leer lassen, um die Sitzung offen zu halten (noch eingestempelt).",
+      "edit.duration": "Dauer",
+      "edit.noStart": "Bitte eine Startzeit angeben.",
+      "edit.endBeforeStart": "Die Endzeit muss nach der Startzeit liegen.",
+      "edit.noSession": "Keine Sitzung ausgewählt.",
+      "edit.delete": "Sitzung löschen"
+    },
+    pt: {
+      "common.break": "Intervalo",
+      "nav.today": "Hoje",
+      "nav.history": "Histórico",
+      "nav.report": "Relatório",
+      "nav.profile": "Configurações",
+      "home.subtitle": "Horas",
+      "home.checkIn": "Registrar entrada",
+      "home.checkOut": "Registrar saída",
+      "home.backToWork": "Voltar ao trabalho",
+      "home.lunchPrefix": "Intervalo de almoço · ",
+      "home.startBreak": "Iniciar intervalo de almoço",
+      "home.today": "Hoje",
+      "home.thisWeek": "Esta semana",
+      "home.breakSuffix": "+ {duration} de intervalo",
+      "home.sessionsTitle": "Sessões de hoje",
+      "home.empty": "Nenhuma sessão hoje. Toque em Registrar entrada para começar.",
+      "home.sessionCountOne": "{count} sessão hoje",
+      "home.sessionCountMany": "{count} sessões hoje",
+      "history.title": "Histórico",
+      "history.subtitle": "Todas as suas sessões registradas",
+      "history.empty": "Nenhuma sessão registrada ainda.",
+      "history.inProgress": "Em andamento",
+      "history.edit": "Editar sessão",
+      "history.delete": "Excluir sessão",
+      "history.dayBreak": "+ {duration} de intervalo",
+      "report.title": "Relatório semanal",
+      "report.subtitle": "Horas agrupadas por semana",
+      "report.average": "Média semanal",
+      "report.weeksTracked": "Semanas registradas",
+      "report.empty": "Nenhuma sessão registrada ainda.",
+      "report.sessionsOne": "{count} sessão",
+      "report.sessionsMany": "{count} sessões",
+      "report.daysOne": "{count} dia",
+      "report.daysMany": "{count} dias",
+      "report.perDay": "~{hours} h/dia",
+      "day.mon": "S",
+      "day.tue": "T",
+      "day.wed": "Q",
+      "day.thu": "Q",
+      "day.fri": "S",
+      "day.sat": "S",
+      "day.sun": "D",
+      "profile.title": "Configurações",
+      "profile.subtitle": "Idioma e seus dados",
+      "profile.language": "Idioma",
+      "profile.saved": "Salvo",
+      "profile.save": "Salvar alterações",
+      "edit.title": "Editar sessão",
+      "edit.subtitle": "Ajuste os horários de uma sessão registrada",
+      "edit.back": "Voltar ao histórico",
+      "edit.checkIn": "Entrada",
+      "edit.checkOut": "Saída",
+      "edit.openHelp": "Deixe vazio para manter a sessão aberta (ainda em andamento).",
+      "edit.duration": "Duração",
+      "edit.noStart": "Defina um horário de início.",
+      "edit.endBeforeStart": "O horário de término deve ser posterior ao de início.",
+      "edit.noSession": "Nenhuma sessão selecionada.",
+      "edit.delete": "Excluir sessão"
+    },
+    ru: {
+      "common.break": "Перерыв",
+      "nav.today": "Сегодня",
+      "nav.history": "История",
+      "nav.report": "Отчёт",
+      "nav.profile": "Настройки",
+      "home.subtitle": "Часы",
+      "home.checkIn": "Начать работу",
+      "home.checkOut": "Завершить работу",
+      "home.backToWork": "Вернуться к работе",
+      "home.lunchPrefix": "Обеденный перерыв · ",
+      "home.startBreak": "Начать обеденный перерыв",
+      "home.today": "Сегодня",
+      "home.thisWeek": "Эта неделя",
+      "home.breakSuffix": "+ {duration} перерыва",
+      "home.sessionsTitle": "Сегодняшние сессии",
+      "home.empty": "Сегодня пока нет сессий. Нажмите «Начать работу».",
+      "home.sessionCountOne": "{count} сессия сегодня",
+      "home.sessionCountMany": "{count} сессий сегодня",
+      "history.title": "История",
+      "history.subtitle": "Все ваши записанные сессии",
+      "history.empty": "Сессии пока не записаны.",
+      "history.inProgress": "В процессе",
+      "history.edit": "Изменить сессию",
+      "history.delete": "Удалить сессию",
+      "history.dayBreak": "+ {duration} перерыва",
+      "report.title": "Отчёт за неделю",
+      "report.subtitle": "Часы по неделям",
+      "report.average": "Среднее за неделю",
+      "report.weeksTracked": "Учтённых недель",
+      "report.empty": "Сессии пока не записаны.",
+      "report.sessionsOne": "{count} сессия",
+      "report.sessionsMany": "{count} сессий",
+      "report.daysOne": "{count} день",
+      "report.daysMany": "{count} дней",
+      "report.perDay": "~{hours} ч/день",
+      "day.mon": "П",
+      "day.tue": "В",
+      "day.wed": "С",
+      "day.thu": "Ч",
+      "day.fri": "П",
+      "day.sat": "С",
+      "day.sun": "В",
+      "profile.title": "Настройки",
+      "profile.subtitle": "Язык и ваши данные",
+      "profile.language": "Язык",
+      "profile.saved": "Сохранено",
+      "profile.save": "Сохранить изменения",
+      "edit.title": "Изменить сессию",
+      "edit.subtitle": "Измените время записанной сессии",
+      "edit.back": "Назад к истории",
+      "edit.checkIn": "Начало",
+      "edit.checkOut": "Окончание",
+      "edit.openHelp": "Оставьте пустым, чтобы сессия осталась открытой.",
+      "edit.duration": "Длительность",
+      "edit.noStart": "Укажите время начала.",
+      "edit.endBeforeStart": "Время окончания должно быть позже времени начала.",
+      "edit.noSession": "Сессия не выбрана.",
+      "edit.delete": "Удалить сессию"
+    },
+    zh: {
+      "common.break": "休息",
+      "nav.today": "今天",
+      "nav.history": "历史",
+      "nav.report": "报告",
+      "nav.profile": "设置",
+      "home.subtitle": "工时",
+      "home.checkIn": "开始工作",
+      "home.checkOut": "结束工作",
+      "home.backToWork": "继续工作",
+      "home.lunchPrefix": "午休 · ",
+      "home.startBreak": "开始午休",
+      "home.today": "今天",
+      "home.thisWeek": "本周",
+      "home.breakSuffix": "+ {duration} 休息",
+      "home.sessionsTitle": "今天的记录",
+      "home.empty": "今天还没有记录。点击“开始工作”即可开始。",
+      "home.sessionCountOne": "今天 {count} 条记录",
+      "home.sessionCountMany": "今天 {count} 条记录",
+      "history.title": "历史",
+      "history.subtitle": "所有已记录的工作时段",
+      "history.empty": "还没有任何记录。",
+      "history.inProgress": "进行中",
+      "history.edit": "编辑记录",
+      "history.delete": "删除记录",
+      "history.dayBreak": "+ {duration} 休息",
+      "report.title": "每周报告",
+      "report.subtitle": "按周统计的工时",
+      "report.average": "每周平均",
+      "report.weeksTracked": "已统计周数",
+      "report.empty": "还没有任何记录。",
+      "report.sessionsOne": "{count} 条记录",
+      "report.sessionsMany": "{count} 条记录",
+      "report.daysOne": "{count} 天",
+      "report.daysMany": "{count} 天",
+      "report.perDay": "约 {hours} 小时/天",
+      "day.mon": "一",
+      "day.tue": "二",
+      "day.wed": "三",
+      "day.thu": "四",
+      "day.fri": "五",
+      "day.sat": "六",
+      "day.sun": "日",
+      "profile.title": "设置",
+      "profile.subtitle": "语言和你的数据",
+      "profile.language": "语言",
+      "profile.saved": "已保存",
+      "profile.save": "保存修改",
+      "edit.title": "编辑记录",
+      "edit.subtitle": "调整已记录时段的时间",
+      "edit.back": "返回历史",
+      "edit.checkIn": "开始时间",
+      "edit.checkOut": "结束时间",
+      "edit.openHelp": "留空表示该时段仍在进行中。",
+      "edit.duration": "时长",
+      "edit.noStart": "请设置开始时间。",
+      "edit.endBeforeStart": "结束时间必须晚于开始时间。",
+      "edit.noSession": "未选择任何记录。",
+      "edit.delete": "删除记录"
+    },
+    ja: {
+      "common.break": "休憩",
+      "nav.today": "今日",
+      "nav.history": "履歴",
+      "nav.report": "レポート",
+      "nav.profile": "設定",
+      "home.subtitle": "時間",
+      "home.checkIn": "勤務開始",
+      "home.checkOut": "勤務終了",
+      "home.backToWork": "仕事に戻る",
+      "home.lunchPrefix": "昼休み · ",
+      "home.startBreak": "昼休みを開始",
+      "home.today": "今日",
+      "home.thisWeek": "今週",
+      "home.breakSuffix": "+ {duration} の休憩",
+      "home.sessionsTitle": "今日の記録",
+      "home.empty": "今日の記録はまだありません。「勤務開始」を押してください。",
+      "home.sessionCountOne": "今日は {count} 件",
+      "home.sessionCountMany": "今日は {count} 件",
+      "history.title": "履歴",
+      "history.subtitle": "記録されたすべての勤務",
+      "history.empty": "記録はまだありません。",
+      "history.inProgress": "進行中",
+      "history.edit": "記録を編集",
+      "history.delete": "記録を削除",
+      "history.dayBreak": "+ {duration} の休憩",
+      "report.title": "週次レポート",
+      "report.subtitle": "週ごとの勤務時間",
+      "report.average": "週平均",
+      "report.weeksTracked": "記録した週数",
+      "report.empty": "記録はまだありません。",
+      "report.sessionsOne": "{count} 件",
+      "report.sessionsMany": "{count} 件",
+      "report.daysOne": "{count} 日",
+      "report.daysMany": "{count} 日",
+      "report.perDay": "約 {hours} 時間/日",
+      "day.mon": "月",
+      "day.tue": "火",
+      "day.wed": "水",
+      "day.thu": "木",
+      "day.fri": "金",
+      "day.sat": "土",
+      "day.sun": "日",
+      "profile.title": "設定",
+      "profile.subtitle": "言語とデータ",
+      "profile.language": "言語",
+      "profile.saved": "保存しました",
+      "profile.save": "変更を保存",
+      "edit.title": "記録を編集",
+      "edit.subtitle": "記録された勤務の時刻を調整します",
+      "edit.back": "履歴に戻る",
+      "edit.checkIn": "開始",
+      "edit.checkOut": "終了",
+      "edit.openHelp": "空欄にすると記録は開いたまま（勤務中）になります。",
+      "edit.duration": "所要時間",
+      "edit.noStart": "開始時刻を設定してください。",
+      "edit.endBeforeStart": "終了時刻は開始時刻より後にしてください。",
+      "edit.noSession": "記録が選択されていません。",
+      "edit.delete": "記録を削除"
+    },
+    ar: {
+      "common.break": "استراحة",
+      "nav.today": "اليوم",
+      "nav.history": "السجل",
+      "nav.report": "التقرير",
+      "nav.profile": "الإعدادات",
+      "home.subtitle": "الساعات",
+      "home.checkIn": "بدء العمل",
+      "home.checkOut": "إنهاء العمل",
+      "home.backToWork": "العودة إلى العمل",
+      "home.lunchPrefix": "استراحة الغداء · ",
+      "home.startBreak": "بدء استراحة الغداء",
+      "home.today": "اليوم",
+      "home.thisWeek": "هذا الأسبوع",
+      "home.breakSuffix": "+ {duration} استراحة",
+      "home.sessionsTitle": "جلسات اليوم",
+      "home.empty": "لا توجد جلسات اليوم بعد. اضغط على «بدء العمل» للبدء.",
+      "home.sessionCountOne": "{count} جلسة اليوم",
+      "home.sessionCountMany": "{count} جلسات اليوم",
+      "history.title": "السجل",
+      "history.subtitle": "كل جلسات العمل المسجلة",
+      "history.empty": "لم تُسجَّل أي جلسات بعد.",
+      "history.inProgress": "قيد التنفيذ",
+      "history.edit": "تعديل الجلسة",
+      "history.delete": "حذف الجلسة",
+      "history.dayBreak": "+ {duration} استراحة",
+      "report.title": "التقرير الأسبوعي",
+      "report.subtitle": "الساعات مجمّعة حسب الأسبوع",
+      "report.average": "المعدل الأسبوعي",
+      "report.weeksTracked": "الأسابيع المسجلة",
+      "report.empty": "لم تُسجَّل أي جلسات بعد.",
+      "report.sessionsOne": "{count} جلسة",
+      "report.sessionsMany": "{count} جلسات",
+      "report.daysOne": "{count} يوم",
+      "report.daysMany": "{count} أيام",
+      "report.perDay": "~{hours} س/يوم",
+      "day.mon": "ن",
+      "day.tue": "ث",
+      "day.wed": "ر",
+      "day.thu": "خ",
+      "day.fri": "ج",
+      "day.sat": "س",
+      "day.sun": "ح",
+      "profile.title": "الإعدادات",
+      "profile.subtitle": "اللغة وبياناتك",
+      "profile.language": "اللغة",
+      "profile.saved": "تم الحفظ",
+      "profile.save": "حفظ التغييرات",
+      "edit.title": "تعديل الجلسة",
+      "edit.subtitle": "عدّل أوقات جلسة مسجلة",
+      "edit.back": "العودة إلى السجل",
+      "edit.checkIn": "البداية",
+      "edit.checkOut": "النهاية",
+      "edit.openHelp": "اتركه فارغًا لتبقى الجلسة مفتوحة (ما زلت مسجّلًا).",
+      "edit.duration": "المدة",
+      "edit.noStart": "يرجى تحديد وقت البداية.",
+      "edit.endBeforeStart": "يجب أن يكون وقت النهاية بعد وقت البداية.",
+      "edit.noSession": "لم يتم تحديد أي جلسة.",
+      "edit.delete": "حذف الجلسة"
+    }
+  };
+
+  var LANGUAGES = [
+    { code: "en", label: "English" },
+    { code: "it", label: "Italiano" },
+    { code: "es", label: "Español" },
+    { code: "fr", label: "Français" },
+    { code: "de", label: "Deutsch" },
+    { code: "pt", label: "Português" },
+    { code: "ru", label: "Русский" },
+    { code: "zh", label: "中文" },
+    { code: "ja", label: "日本語" },
+    { code: "ar", label: "العربية" }
+  ];
+
+  var RTL_LANGUAGES = ["ar"];
+
+  var detected = null;
+  function detectLocale() {
+    if (detected) return detected;
+    var list = navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language || "en"];
+    for (var i = 0; i < list.length; i++) {
+      var code = String(list[i]).toLowerCase().slice(0, 2);
+      if (TRANSLATIONS[code]) { detected = code; return code; }
+    }
+    detected = "en";
+    return detected;
+  }
+  function locale() {
+    var stored = state.data.settings.lang;
+    return stored && TRANSLATIONS[stored] ? stored : detectLocale();
+  }
+  function t(key, vars) {
+    var loc = locale();
+    var text = (TRANSLATIONS[loc] && TRANSLATIONS[loc][key]) || (TRANSLATIONS.en && TRANSLATIONS.en[key]) || key;
+    if (vars) {
+      Object.keys(vars).forEach(function (name) {
+        text = text.split("{" + name + "}").join(String(vars[name]));
+      });
+    }
+    return text;
+  }
+
+  function esc(value) {
+    return String(value == null ? "" : value).replace(/[&<>"']/g, function (c) {
+      return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
+    });
+  }
+  function uid() {
+    return Date.now().toString(36) + Math.random().toString(36).slice(2, 8);
+  }
+
+  var ICONS = {
+    clock: '<circle cx="12" cy="12" r="9"/><path d="M12 7.5V12l3 2"/>',
+    calendar: '<rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M8 3v4M16 3v4M3.5 10h17"/>',
+    chart: '<path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/>',
+    sliders: '<line x1="4" y1="21" x2="4" y2="14"/><line x1="4" y1="10" x2="4" y2="3"/><line x1="12" y1="21" x2="12" y2="12"/><line x1="12" y1="8" x2="12" y2="3"/><line x1="20" y1="21" x2="20" y2="16"/><line x1="20" y1="12" x2="20" y2="3"/><line x1="1" y1="14" x2="7" y2="14"/><line x1="9" y1="8" x2="15" y2="8"/><line x1="17" y1="16" x2="23" y2="16"/>', user: '<circle cx="12" cy="8.5" r="3.75"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0"/>',
+    enter: '<path d="M14 4h4.5A1.5 1.5 0 0 1 20 5.5v13a1.5 1.5 0 0 1-1.5 1.5H14"/><path d="M10 8l4 4-4 4M14 12H4"/>',
+    exit: '<path d="M10 4H5.5A1.5 1.5 0 0 0 4 5.5v13A1.5 1.5 0 0 0 5.5 20H10"/><path d="M16 8l4 4-4 4M20 12H10"/>',
+    coffee: '<path d="M4 8h12v6a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4V8z"/><path d="M16 9h1.5a2.5 2.5 0 0 1 0 5H16"/><path d="M7.5 3.5v2M11.5 3.5v2"/>',
+    trash: '<path d="M4 7h16"/><path d="M9.5 7V4.5h5V7"/><path d="M6.5 7l1 13h9l1-13"/>',
+    pencil: '<path d="M4 20h4L20 8l-4-4L4 16v4z"/><path d="M14.5 5.5l4 4"/>',
+    back: '<path d="M15 5l-7 7 7 7"/>',
+    download: '<path d="M12 3.5v11"/><path d="M7.5 10.5L12 15l4.5-4.5"/><path d="M4.5 19.5h15"/>',
+    upload: '<path d="M12 15.5v-11"/><path d="M7.5 8.5L12 4l4.5 4.5"/><path d="M4.5 19.5h15"/>',
+    check: '<path d="M4.5 12.5l5 5 10-11"/>',
+    target: '<circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="3.5"/>',
+    globe: '<circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17"/><path d="M12 3.5c2.5 2.5 2.5 14.5 0 17-2.5-2.5-2.5-14.5 0-17z"/>'
+  };
+  function icon(name, cls) {
+    return '<svg class="' + (cls || "ic") + '" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + (ICONS[name] || "") + "</svg>";
+  }
+
+  function fmtTime(iso) {
+    if (!iso) return "—";
+    return new Date(iso).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+  }
+  function fmtDuration(mins) {
+    if (mins == null) return "—";
+    var h = Math.floor(mins / 60);
+    var m = Math.round(mins % 60);
+    if (h === 0) return m + "m";
+    if (m === 0) return h + "h";
+    return h + "h " + m + "m";
+  }
+  function fmtHours(mins) {
+    return ((mins || 0) / 60).toFixed(1);
+  }
+  function isBreak(entry) {
+    return !!entry && entry.type === "break";
+  }
+  function minutesBetween(a, b) {
+    return (new Date(b) - new Date(a)) / 60000;
+  }
+  function isSameDay(a, b) {
+    var d1 = new Date(a), d2 = new Date(b);
+    return d1.getFullYear() === d2.getFullYear() && d1.getMonth() === d2.getMonth() && d1.getDate() === d2.getDate();
+  }
+  function startOfWeek(d) {
+    var date = new Date(d);
+    var day = date.getDay() || 7;
+    date.setHours(0, 0, 0, 0);
+    date.setDate(date.getDate() - (day - 1));
+    return date;
+  }
+  function dayKey(iso) {
+    var d = new Date(iso);
+    return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0");
+  }
+  function fmtDayLabel(key) {
+    var p = key.split("-").map(Number);
+    return new Date(p[0], p[1] - 1, p[2]).toLocaleDateString([], { weekday: "long", day: "numeric", month: "short" });
+  }
+  function fmtShortDay(date) {
+    return date.toLocaleDateString([], { weekday: "short", day: "numeric", month: "short" });
+  }
+  function toLocalInput(iso) {
+    if (!iso) return "";
+    var d = new Date(iso);
+    var pad = function (n) { return String(n).padStart(2, "0"); };
+    return d.getFullYear() + "-" + pad(d.getMonth() + 1) + "-" + pad(d.getDate()) + "T" + pad(d.getHours()) + ":" + pad(d.getMinutes());
+  }
+  function fromLocalInput(val) {
+    return val ? new Date(val).toISOString() : null;
+  }
+
+  function load() {
+    var base = { version: 1, settings: { weekly_goal: null, lang: null }, entries: [] };
+    try {
+      var raw = localStorage.getItem(STORE_KEY);
+      if (!raw) return base;
+      var d = JSON.parse(raw);
+      return {
+        version: 1,
+        settings: Object.assign({}, base.settings, (d && d.settings) || {}),
+        entries: Array.isArray(d && d.entries) ? d.entries : []
+      };
+    } catch (e) {
+      return base;
+    }
+  }
+
+  var state = { data: load(), storageOk: true };
+
+  function save() {
+    try {
+      localStorage.setItem(STORE_KEY, JSON.stringify(state.data));
+      state.storageOk = true;
+    } catch (e) {
+      state.storageOk = false;
+    }
+  }
+
+  function openEntry() {
+    for (var i = 0; i < state.data.entries.length; i++) {
+      if (!state.data.entries[i].check_out) return state.data.entries[i];
+    }
+    return null;
+  }
+  function newEntry(type) {
+    return { id: uid(), check_in: new Date().toISOString(), check_out: null, duration_minutes: null, type: type };
+  }
+  function closeOpen() {
+    var open = openEntry();
+    if (!open) return;
+    var out = new Date();
+    open.check_out = out.toISOString();
+    open.duration_minutes = Math.round(minutesBetween(open.check_in, out));
+  }
+  function deleteEntry(id) {
+    state.data.entries = state.data.entries.filter(function (e) { return e.id !== id; });
+    save();
+    render();
+  }
+  function sumWorked(list, open, now) {
+    return list.reduce(function (sum, e) {
+      if (isBreak(e)) return sum;
+      if (e.check_out && e.duration_minutes != null) return sum + e.duration_minutes;
+      if (open && e.id === open.id) return sum + minutesBetween(e.check_in, now);
+      return sum;
+    }, 0);
+  }
+  function sumBreak(list, open, now) {
+    return list.reduce(function (sum, e) {
+      if (!isBreak(e)) return sum;
+      if (e.check_out && e.duration_minutes != null) return sum + e.duration_minutes;
+      if (open && e.id === open.id) return sum + minutesBetween(e.check_in, now);
+      return sum;
+    }, 0);
+  }
+
+  var toastTimer = null;
+  function toast(msg) {
+    var el = document.getElementById("toast");
+    el.textContent = msg;
+    el.hidden = false;
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function () { el.hidden = true; }, 2600);
+  }
+
+  function exportData() {
+    try {
+      var payload = {
+        app: "chronostrack",
+        version: 1,
+        exported_at: new Date().toISOString(),
+        settings: { weekly_goal: state.data.settings.weekly_goal == null ? null : state.data.settings.weekly_goal,
+          lang: state.data.settings.lang || null
+        },
+        entries: state.data.entries.map(function (e) {
+          return {
+            id: e.id,
+            check_in: e.check_in,
+            check_out: e.check_out || null,
+            duration_minutes: e.duration_minutes == null ? null : e.duration_minutes,
+            type: e.type || "work"
+          };
+        })
+      };
+      var blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
+      var url = URL.createObjectURL(blob);
+      var a = document.createElement("a");
+      a.href = url;
+      a.download = "chronostrack-" + new Date().toISOString().slice(0, 10) + ".json";
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+      toast(t("data.exported"));
+    } catch (err) {
+      toast(t("data.exportError"));
+    }
+  }
+
+  function importFile(file) {
+    var reader = new FileReader();
+    reader.onload = function () {
+      try {
+        var parsed = JSON.parse(String(reader.result));
+        var incoming = parsed && Array.isArray(parsed.entries) ? parsed.entries : [];
+        var seen = {};
+        state.data.entries.forEach(function (e) { seen[e.id] = true; });
+        var added = 0;
+        incoming.forEach(function (e) {
+          if (!e || !e.check_in) return;
+          var id = e.id || uid();
+          if (seen[id]) return;
+          seen[id] = true;
+          state.data.entries.push({
+            id: id,
+            check_in: e.check_in,
+            check_out: e.check_out || null,
+            duration_minutes: e.duration_minutes == null
+              ? (e.check_out ? Math.round(minutesBetween(e.check_in, e.check_out)) : null)
+              : e.duration_minutes,
+            type: e.type === "break" ? "break" : "work"
+          });
+          added++;
+        });
+        var s = parsed && parsed.settings;
+        if (s) {
+          if (state.data.settings.weekly_goal == null && s.weekly_goal != null && s.weekly_goal !== "") {
+            state.data.settings.weekly_goal = Number(s.weekly_goal);
+          }
+          if (!state.data.settings.lang && s.lang && TRANSLATIONS[s.lang]) state.data.settings.lang = s.lang;
+        }
+        save();
+        render();
+        toast(added ? t("data.imported", { count: added }) : t("data.importNone"));
+      } catch (err) {
+        toast(t("data.importError"));
+      }
+    };
+    reader.readAsText(file);
+  }
+
+  function groupByDay(entries) {
+    var map = {};
+    entries.forEach(function (e) {
+      var k = dayKey(e.check_in);
+      if (!map[k]) map[k] = [];
+      map[k].push(e);
+    });
+    return Object.keys(map).sort().reverse().map(function (key) {
+      var items = map[key];
+      return {
+        key: key,
+        items: items,
+        total: items.reduce(function (s, e) { return s + (isBreak(e) ? 0 : e.duration_minutes || 0); }, 0),
+        breakTotal: items.reduce(function (s, e) { return s + (isBreak(e) ? e.duration_minutes || 0 : 0); }, 0)
+      };
+    });
+  }
+
+  function groupByWeek(entries) {
+    var map = {};
+    entries.forEach(function (e) {
+      var ws = startOfWeek(e.check_in);
+      var key = dayKey(ws.toISOString());
+      if (!map[key]) map[key] = { key: key, start: ws, items: [] };
+      map[key].items.push(e);
+    });
+    return Object.keys(map).map(function (k) {
+      var w = map[k];
+      var days = {};
+      var perDay = [0, 0, 0, 0, 0, 0, 0];
+      w.items.forEach(function (e) {
+        days[dayKey(e.check_in)] = true;
+        var idx = Math.floor((new Date(e.check_in) - w.start) / DAY_MS);
+        if (idx >= 0 && idx < 7) perDay[idx] += isBreak(e) ? 0 : e.duration_minutes || 0;
+      });
+      return {
+        key: w.key,
+        start: w.start,
+        total: w.items.reduce(function (s, e) { return s + (isBreak(e) ? 0 : e.duration_minutes || 0); }, 0),
+        dayCount: Object.keys(days).length,
+        sessionCount: w.items.length,
+        perDay: perDay
+      };
+    }).sort(function (a, b) { return b.start - a.start; });
+  }
+
+  function nav(active) {
+    var items = [
+      ["#/", "today", "nav.today", "clock"],
+      ["#/history", "history", "nav.history", "calendar"],
+      ["#/report", "report", "nav.report", "chart"],
+      ["#/settings", "settings", "nav.profile", "sliders"]
+    ];
+    return '<nav class="nav"><div class="in">' + items.map(function (it) {
+      return '<a href="' + it[0] + '"' + (active === it[1] ? ' class="on"' : "") + ">" + icon(it[3]) + "<span>" + esc(t(it[2])) + "</span></a>";
+    }).join("") + "</div></nav>";
+  }
+
+  function statCard(label, value, note) {
+    return '<div class="card stat"><div class="k">' + esc(label) + '</div><div class="v">' + esc(value) + "</div>" +
+      (note ? '<div class="n">' + esc(note) + "</div>" : "") + "</div>";
+  }
+
+  function sessionRow(e) {
+    var active = !e.check_out;
+    var br = isBreak(e);
+    var dur = active ? minutesBetween(e.check_in, new Date()) : (e.duration_minutes || 0);
+    var dotCls = active ? (br ? "dot warn pulse" : "dot ok pulse") : (br ? "dot warn" : "dot");
+    return '<li class="row' + (active ? " on" : "") + '">' +
+      '<div class="rleft"><span class="' + dotCls + '"></span><div>' +
+      '<div class="t">' + (br ? '<span class="tag' + (active ? " tagon" : "") + '">' + esc(t("common.break")) + "</span>" : "") +
+      esc(fmtTime(e.check_in)) + " – " + esc(fmtTime(e.check_out)) + "</div>" +
+      '<div class="d"' + (active ? ' data-live="dur"' : "") + ">" + esc(fmtDuration(dur)) + "</div>" +
+      "</div></div>" +
+      (active ? "" : '<button class="x" data-act="del" data-id="' + esc(e.id) + '" aria-label="' + esc(t("history.delete")) + '">' + icon("trash") + "</button>") +
+      "</li>";
+  }
+
+  function viewToday() {
+    var now = new Date();
+    var open = openEntry();
+    var today = state.data.entries.filter(function (e) { return isSameDay(e.check_in, now); });
+    var week = state.data.entries.filter(function (e) { return new Date(e.check_in) >= startOfWeek(now); });
+    var todayMin = sumWorked(today, open, now);
+    var breakMin = sumBreak(today, open, now);
+    var weekMin = sumWorked(week, open, now);
+    var onBreak = !!open && isBreak(open);
+    var working = !!open && !onBreak;
+    var bigAct = onBreak ? "endbreak" : (working ? "checkout" : "checkin");
+    var label = now.toLocaleDateString([], { weekday: "long", month: "short", day: "numeric" });
+
+    var h = '<div class="wrap">';
+    h += '<div class="top"><div class="eyebrow">' + icon("clock") + "<span>" + esc(t("home.subtitle")) + "</span></div><h1>" + esc(label) + "</h1></div>";
+    h += '<button class="big' + (open ? " on" : "") + '" data-act="' + bigAct + '">' +
+      '<div class="ring">' + icon(onBreak ? "coffee" : (working ? "exit" : "enter"), "ic-lg") + "</div>" +
+      '<span class="lbl">' + esc(onBreak ? t("home.backToWork") : (working ? t("home.checkOut") : t("home.checkIn"))) + "</span>" +
+      (open ? '<span class="live" data-live="prefix">' + esc((onBreak ? t("home.lunchPrefix") : "") + fmtDuration(minutesBetween(open.check_in, now))) + "</span>" : "") +
+      "</button>";
+    if (working) {
+      h += '<button class="btn ghost wide mt3" data-act="break">' + icon("coffee") + " " + esc(t("home.startBreak")) + "</button>";
+    }
+    h += '<div class="grid2 mt6">' +
+      statCard(t("home.today"), fmtDuration(todayMin), breakMin > 0 ? t("home.breakSuffix", { duration: fmtDuration(breakMin) }) : "") +
+      statCard(t("home.thisWeek"), fmtDuration(weekMin), "") +
+      "</div>";
+    h += '<div class="mt8"><div class="sec">' + icon("clock") + "<span>" + esc(t("home.sessionsTitle")) + "</span></div>";
+    if (!today.length) h += '<p class="empty">' + esc(t("home.empty")) + "</p>";
+    else h += '<ul class="list">' + today.map(sessionRow).join("") + "</ul>";
+    h += "</div>";
+    h += '<p class="foot">' + icon("calendar") + " " + esc(t(today.length === 1 ? "home.sessionCountOne" : "home.sessionCountMany", { count: today.length })) + "</p>";
+    h += "</div>" + nav("today");
+    return h;
+  }
+
+  function viewHistory() {
+    var groups = groupByDay(state.data.entries);
+    var h = '<div class="wrap"><div class="top"><h1>' + esc(t("history.title")) + '</h1><p class="sub">' + esc(t("history.subtitle")) + "</p></div>";
+    if (!groups.length) {
+      h += '<p class="empty">' + esc(t("history.empty")) + "</p>";
+    } else {
+      h += groups.map(function (g) {
+        var rows = g.items.map(function (e) {
+          var br = isBreak(e);
+          var dur = e.check_out ? (e.duration_minutes || 0) : null;
+          var dotCls = e.check_out ? (br ? "dot warn" : "dot") : "dot ok pulse";
+          return '<li class="row"><div class="rleft"><span class="' + dotCls + '"></span><div>' +
+            '<div class="t">' + (br ? '<span class="tag">' + esc(t("common.break")) + "</span>" : "") +
+            esc(fmtTime(e.check_in)) + " – " + esc(fmtTime(e.check_out)) + "</div>" +
+            '<div class="d">' + esc(dur != null ? fmtDuration(dur) : t("history.inProgress")) + "</div>" +
+            '</div></div><div class="racts">' +
+            '<a class="x" href="#/edit/' + esc(e.id) + '" aria-label="' + esc(t("history.edit")) + '">' + icon("pencil") + "</a>" +
+            '<button class="x" data-act="del" data-id="' + esc(e.id) + '" aria-label="' + esc(t("history.delete")) + '">' + icon("trash") + "</button>" +
+            "</div></li>";
+        }).join("");
+        return '<div class="grp"><div class="ghead"><span>' + esc(fmtDayLabel(g.key)) + "</span><span class=\"gtot\">" + esc(fmtDuration(g.total)) +
+          (g.breakTotal > 0 ? ' <span class="gmuted">' + esc(t("history.dayBreak", { duration: fmtDuration(g.breakTotal) })) + "</span>" : "") +
+          "</span></div><ul class=\"list\">" + rows + "</ul></div>";
+      }).join("");
+    }
+    h += "</div>" + nav("history");
+    return h;
+  }
+
+  function viewReport() {
+    var weeks = groupByWeek(state.data.entries);
+    var maxDay = 1;
+    weeks.forEach(function (w) {
+      w.perDay.forEach(function (m) { if (m > maxDay) maxDay = m; });
+    });
+    var avg = weeks.length ? weeks.reduce(function (s, w) { return s + w.total; }, 0) / weeks.length : 0;
+
+    var h = '<div class="wrap"><div class="top"><h1>' + esc(t("report.title")) + '</h1><p class="sub">' + esc(t("report.subtitle")) + "</p></div>";
+    if (weeks.length) {
+      h += '<div class="card mt6"><div style="display:flex;align-items:center;justify-content:space-between">' +
+        '<div><div style="font-size:.6875rem;letter-spacing:.06em;text-transform:uppercase;color:var(--mu);font-weight:500">' + esc(t("report.average")) + "</div>" +
+        '<div style="font-size:1.5rem;font-weight:600;margin-top:.25rem;font-variant-numeric:tabular-nums">' + esc(fmtHours(avg)) + "h</div></div>" +
+        '<div style="text-align:right"><div style="font-size:.6875rem;letter-spacing:.06em;text-transform:uppercase;color:var(--mu);font-weight:500">' + esc(t("report.weeksTracked")) + "</div>" +
+        '<div style="font-size:1.5rem;font-weight:600;margin-top:.25rem;font-variant-numeric:tabular-nums">' + weeks.length + "</div></div></div></div>";
+    }
+    if (!weeks.length) {
+      h += '<p class="empty">' + esc(t("report.empty")) + "</p>";
+    } else {
+      var dayLetters = ["day.mon", "day.tue", "day.wed", "day.thu", "day.fri", "day.sat", "day.sun"].map(function (k) { return t(k); });
+      h += '<div class="mt6" style="display:flex;flex-direction:column;gap:.75rem">' + weeks.map(function (w) {
+        var end = new Date(w.start.getTime() + 6 * DAY_MS);
+        var bars = w.perDay.map(function (mins) {
+          var pct = mins > 0 ? Math.max(6, (mins / maxDay) * 100) : 0;
+          return '<div class="col"><div class="bar" style="height:' + pct.toFixed(1) + '%"></div></div>';
+        }).join("");
+        return '<div class="card"><div class="wtop"><div class="wd">' + esc(fmtShortDay(w.start)) + " – " + esc(fmtShortDay(end)) + "</div>" +
+          '<div class="wt">' + esc(fmtDuration(w.total)) + "</div></div>" +
+          '<div class="bars">' + bars + "</div>" +
+          '<div class="days">' + dayLetters.map(function (dl) { return "<span>" + esc(dl) + "</span>"; }).join("") + "</div>" +
+          '<div class="wmeta"><span>' + esc(t(w.sessionCount === 1 ? "report.sessionsOne" : "report.sessionsMany", { count: w.sessionCount })) + " · " +
+          esc(t(w.dayCount === 1 ? "report.daysOne" : "report.daysMany", { count: w.dayCount })) + "</span>" +
+          '<span style="font-variant-numeric:tabular-nums">' + (w.dayCount ? esc(t("report.perDay", { hours: fmtHours(w.total / w.dayCount) })) : "") + "</span></div></div>";
+      }).join("") + "</div>";
+    }
+    h += "</div>" + nav("report");
+    return h;
+  }
+
+  function viewSettings() {
+    var s = state.data.settings;
+    var loc = locale();
+    var h = '<div class="wrap"><div class="top"><h1>' + esc(t("profile.title")) + '</h1><p class="sub">' + esc(t("profile.subtitle")) + "</p></div>";
+    h += '<form id="settingsForm" class="stack">';
+    
+    
+    h += '<label class="fld"><span class="lbl-ic">' + icon("globe") + esc(t("profile.language")) + '</span><select id="fLang">' +
+      LANGUAGES.map(function (l) { return '<option value="' + l.code + '"' + (loc === l.code ? " selected" : "") + ">" + esc(l.label) + "</option>"; }).join("") +
+      "</select></label>";
+    
+    h += '<button type="submit" class="btn dark wide">' + icon("check") + " " + esc(t("profile.save")) + "</button>";
+    h += "</form>";
+    h += '<div class="card stack mt6">' +
+      '<div><div class="ctitle">' + esc(t("data.title")) + '</div><p class="hint">' + esc(t("data.help")) + "</p></div>" +
+      '<div class="grid2">' +
+      '<button type="button" class="btn ghost" data-act="export">' + icon("download") + " " + esc(t("data.export")) + "</button>" +
+      '<button type="button" class="btn ghost" data-act="import">' + icon("upload") + " " + esc(t("data.import")) + "</button>" +
+      "</div>" +
+      '<input type="file" id="fileInput" accept="application/json,.json" class="hidein">' +
+      (state.storageOk ? "" : '<p class="warn">' + esc(t("settings.storageWarning")) + "</p>") +
+      '<p class="hint" style="margin-top:.75rem">' + esc(t("settings.local")) + "</p>" +
+      "</div>";
+    h += "</div>" + nav("settings");
+    return h;
+  }
+
+  function viewEdit(id) {
+    var entry = state.data.entries.filter(function (e) { return e.id === id; })[0];
+    var h = '<div class="wrap"><div class="top"><a class="back" href="#/history" aria-label="' + esc(t("edit.back")) + '">' + icon("back") + "</a>" +
+      "<h1>" + esc(t("edit.title")) + '</h1><p class="sub">' + esc(t("edit.subtitle")) + "</p></div>";
+    if (!entry) {
+      h += '<p class="empty">' + esc(t("edit.noSession")) + "</p></div>";
+      return h;
+    }
+    var mins = entry.check_out && new Date(entry.check_out) > new Date(entry.check_in)
+      ? minutesBetween(entry.check_in, entry.check_out) : null;
+    h += '<form id="editForm" class="stack" data-id="' + esc(entry.id) + '">';
+    h += '<label class="fld"><span>' + esc(t("edit.checkIn")) + '</span><input type="datetime-local" id="fIn" value="' + esc(toLocalInput(entry.check_in)) + '"></label>';
+    h += '<label class="fld"><span>' + esc(t("edit.checkOut")) + '</span><input type="datetime-local" id="fOut" value="' + esc(toLocalInput(entry.check_out)) + '"><span class="hint">' + esc(t("edit.openHelp")) + "</span></label>";
+    h += '<div class="card rowline"><span>' + esc(t("edit.duration")) + '</span><b id="prev">' + esc(mins != null ? fmtDuration(mins) : "—") + "</b></div>";
+    h += '<div class="err" id="editErr" hidden></div>';
+    h += '<button type="submit" class="btn dark wide">' + icon("check") + " " + esc(t("profile.save")) + "</button>";
+    h += '<button type="button" class="btn ghost wide danger" data-act="del" data-id="' + esc(entry.id) + '">' + icon("trash") + " " + esc(t("edit.delete")) + "</button>";
+    h += "</form></div>";
+    return h;
+  }
+
+  var lastRoute = "";
+  function parseRoute() {
+    var raw = location.hash.replace(/^#/, "") || "/";
+    if (raw.indexOf("/edit/") === 0) return { name: "edit", id: raw.slice(6) };
+    if (raw === "/history") return { name: "history" };
+    if (raw === "/report") return { name: "report" };
+    if (raw === "/settings") return { name: "settings" };
+    return { name: "today" };
+  }
+
+  function render() {
+    var r = parseRoute();
+    document.documentElement.lang = locale();
+    document.documentElement.dir = RTL_LANGUAGES.indexOf(locale()) >= 0 ? "rtl" : "ltr";
+    var app = document.getElementById("app");
+    if (r.name === "history") app.innerHTML = viewHistory();
+    else if (r.name === "report") app.innerHTML = viewReport();
+    else if (r.name === "settings") app.innerHTML = viewSettings();
+    else if (r.name === "edit") app.innerHTML = viewEdit(r.id);
+    else app.innerHTML = viewToday();
+    if (r.name !== lastRoute) {
+      lastRoute = r.name;
+      window.scrollTo(0, 0);
+    }
+  }
+
+  function liveTick() {
+    var open = openEntry();
+    if (!open) return;
+    var dur = fmtDuration(minutesBetween(open.check_in, new Date()));
+    var prefix = (isBreak(open) ? t("home.lunchPrefix") : "") + dur;
+    var nodes = document.querySelectorAll("[data-live]");
+    for (var i = 0; i < nodes.length; i++) {
+      nodes[i].textContent = nodes[i].getAttribute("data-live") === "prefix" ? prefix : dur;
+    }
+  }
+
+  function readForm() {
+    return {
+      lang: document.getElementById("fLang")
+    };
+  }
+
+  function applyForm() {
+    var f = readForm();
+    if (f.lang && f.lang.value) state.data.settings.lang = f.lang.value;
+    save();
+    return true;
+  }
+
+  function onAppClick(ev) {
+    var el = ev.target.closest("[data-act]");
+    if (!el) return;
+    var act = el.getAttribute("data-act");
+    var id = el.getAttribute("data-id");
+    if (act === "checkin") {
+      state.data.entries.push(newEntry("work"));
+      save(); render();
+    } else if (act === "checkout") {
+      closeOpen(); save(); render();
+    } else if (act === "break") {
+      closeOpen();
+      state.data.entries.push(newEntry("break"));
+      save(); render();
+    } else if (act === "endbreak") {
+      closeOpen();
+      state.data.entries.push(newEntry("work"));
+      save(); render();
+    } else if (act === "del") {
+      deleteEntry(id);
+    } else if (act === "export") {
+      exportData();
+    } else if (act === "import") {
+      var input = document.getElementById("fileInput");
+      if (input) input.click();
+    }
+  }
+
+  function onAppSubmit(ev) {
+    var form = ev.target;
+    if (form.id === "settingsForm") {
+      ev.preventDefault();
+applyForm(); render();
+      toast(t("profile.saved"));
+    } else if (form.id === "editForm") {
+      ev.preventDefault();
+      var id = form.getAttribute("data-id");
+      var entry = state.data.entries.filter(function (e) { return e.id === id; })[0];
+      var errEl2 = document.getElementById("editErr");
+      if (!entry) return;
+      var a = fromLocalInput(document.getElementById("fIn").value);
+      var b = fromLocalInput(document.getElementById("fOut").value);
+      if (!a) { errEl2.textContent = t("edit.noStart"); errEl2.hidden = false; return; }
+      if (b && new Date(b) <= new Date(a)) { errEl2.textContent = t("edit.endBeforeStart"); errEl2.hidden = false; return; }
+      entry.check_in = a;
+      entry.check_out = b;
+      entry.duration_minutes = b ? Math.round(minutesBetween(a, b)) : null;
+      save();
+      location.hash = "#/history";
+      render();
+    }
+  }
+
+  function onAppChange(ev) {
+    if (ev.target.id === "fLang") {
+      applyForm();
+      render();
+    } else if (ev.target.id === "fileInput") {
+      var file = ev.target.files && ev.target.files[0];
+      ev.target.value = "";
+      if (file) importFile(file);
+    }
+  }
+
+  function onAppInput(ev) {
+    if (ev.target.id !== "fIn" && ev.target.id !== "fOut") return;
+    var prev = document.getElementById("prev");
+    if (!prev) return;
+    var a = fromLocalInput(document.getElementById("fIn").value);
+    var b = fromLocalInput(document.getElementById("fOut").value);
+    var mins = a && b && new Date(b) > new Date(a) ? minutesBetween(a, b) : null;
+    prev.textContent = mins != null ? fmtDuration(mins) : "—";
+  }
+
+  var app = document.getElementById("app");
+  app.addEventListener("click", onAppClick);
+  app.addEventListener("submit", onAppSubmit);
+  app.addEventListener("change", onAppChange);
+  app.addEventListener("input", onAppInput);
+  window.addEventListener("hashchange", render);
+  setInterval(liveTick, 1000);
+  render();
+})();
+</script>
+</body>
+</html>
